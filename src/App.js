@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import {BrowserRouter, HashRouter, Routes, Route} from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
+import TransactionForm from './components/TransactionForm';
 
 export default function App() {
     const [balance, setBalance] = useState(0);
     const [credits, setCredits] = useState("");
-    const [debits, setDebits] = useState([]);
+    const [debits, setDebits] = useState("");
 
     useEffect(() => {
       async function fetchData() {
@@ -54,10 +55,21 @@ export default function App() {
       <div className='app'>
         <HashRouter>
           <Routes>
-            <Route exact path="/">
-              <Route exact path="/" element={<Home accountBalance={balance} />} />
-              <Route path="credits" element={<Credits key={credits} accountBalance={balance} credits={credits} addTransaction={addTransaction} />} />
-              <Route path="debits" element={<Debits key={debits} accountBalance={balance} debits={debits} addTransaction={addTransaction} />} />
+            <Route exact path="/" element={<Home accountBalance={balance} />} >
+              <Route exact path="credits" 
+                element={
+                  <Credits key={credits} accountBalance={balance} credits={credits} addTransaction={addTransaction}>
+                    <TransactionForm addTransaction={addTransaction} isCredit={true} />
+                  </Credits>
+                } 
+              />
+              <Route path="debits" 
+                element={
+                  <Debits key={debits} accountBalance={balance} debits={debits} addTransaction={addTransaction}>
+                    <TransactionForm addTransaction={addTransaction} />
+                  </Debits>
+                } 
+              />
             </Route>
           </Routes>
         </HashRouter>

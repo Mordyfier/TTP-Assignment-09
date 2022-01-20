@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import NavBar from './NavBar';
-import AccountBalance from './AccountBalance';
+import React, { useState } from 'react';
 import Transaction from './Transaction';
-import TransactionForm from './TransactionForm';
+
     
-export default function Debits (props) {
+export default function Debits ({debits, children}) {
+    const [sortAspect, setSortAspect] = useState("");
+    const currentDebits = debits;
+
+    if (sortAspect) { 
+        currentDebits.sort((firstEl, secondEl) => {
+            if (firstEl[sortAspect] < secondEl[sortAspect]) {
+                return -1;
+            } else if (firstEl[sortAspect] > secondEl[sortAspect]) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+    }
+
     return (
-        <>
-            <NavBar />
-            <AccountBalance balance={props.accountBalance} />
-            {props.debits && props.debits.map(x => <Transaction key={x.id} transaction={x} debit={true} />)}
-            <TransactionForm addTransaction={props.addTransaction} />
-        </>
+        <div className='debits'>
+            {debits && currentDebits.map(x => <Transaction key={x.id} transaction={x} debit={true} />)}
+            {children}
+            <button onClick={() => setSortAspect('description')}>Sort Alphabetically</button>
+            <button onClick={() => setSortAspect('amount')}>Sort By Amount</button>
+            <button onClick={() => setSortAspect('date')}>Sort By Date</button>
+        </div>
     );
 }
