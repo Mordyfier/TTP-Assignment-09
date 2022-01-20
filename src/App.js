@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Routes, Route} from 'react-router-dom';
 import Home from './components/Home';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
@@ -47,12 +47,12 @@ export default function App() {
         date : now.toISOString()
       }
       isCredit ? setCredits(prevState => [...prevState, newTransaction]) : setDebits(prevState => [...prevState, newTransaction]);
-      isCredit ? setBalance(balance + amount) : setBalance(balance - amount);
+      isCredit ? setBalance(Math.floor((balance + amount) * 100) / 100) : setBalance(Math.floor((balance - amount) * 100) / 100);
     }
 
     return (
       <div className='app'>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route exact path="/">
               <Route exact path="/" element={<Home accountBalance={balance} />} />
@@ -60,7 +60,7 @@ export default function App() {
               <Route path="debits" element={<Debits key={debits} accountBalance={balance} debits={debits} addTransaction={addTransaction} />} />
             </Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
 }
