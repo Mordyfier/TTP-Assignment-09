@@ -15,7 +15,7 @@ export default function TransactionForm (props) {
                 props.addTransaction(props.isCredit, id, amount, description);
             }}>
             <label>
-                Amount:<input type="text" onChange={(e) => setAmount(Number(e.target.value))} />
+                Amount:<input type="number" onChange={(e) => setAmount(Number(e.target.value))} />
             </label>
             <label>
                 Description:<input type="text" onChange={(e) => setDescription(e.target.value)} />
