@@ -42,3 +42,80 @@ code {
   color: azure;
   font-size: 20px;
 }
+
+td{
+  font-size: 25px;
+  text-align: right;
+  padding: 10px;
+  border-bottom: 2px solid forestgreen;
+}
+
+.desc {
+  width: 450px;
+  text-align: left;
+}
+
+.symbol {
+  text-align: left;
+  width: 10px;
+}
+
+.amount {
+  width: 120px;
+}
+
+.time {
+  width: 220px;
+}
+
+.day {
+  width: 200px;
+}
+
+.balance {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+} 
+
+.transactions {
+  margin: auto;
+  width: 1100px;
+}
+
+label, input {
+  margin-top: 20px;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.transaction-form {
+  text-align: center;
+}
+
+.submit-button{
+  border: 0;
+  background-color: forestgreen;
+  color: white;
+  padding: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.credits, .debits {
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  border: forestgreen 2px solid;
+  background-color: white;
+  color: forestgreen;
+  font-size: 15px;
+  font-weight: bold;
+}
