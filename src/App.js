@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
+import Page from './components/Page';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
 import TransactionForm from './components/TransactionForm';
@@ -58,21 +59,25 @@ export default function App() {
       <div className='app'>
         <HashRouter>
           <Routes>
-            <Route exact path="/" element={<Home userName={currentUser.userName} setCurrentUser={setCurrentUser} accountBalance={balance} />} >
-              <Route exact path="login" element={<Login setCurrentUser={setCurrentUser} />} />
-              <Route exact path="userProfile" element={<UserProfile userName={currentUser.userName} memberSince={currentUser.memberSince} />} />
+            <Route exact path="/" element={<Page title="Home"><Home userName={currentUser.userName} setCurrentUser={setCurrentUser} accountBalance={balance} /> </Page> } >
+              <Route exact path="login" element={<Page title="Log in"><Login setCurrentUser={setCurrentUser} /></Page>} />
+              <Route exact path="userProfile" element={<Page title="User Profile"><UserProfile userName={currentUser.userName} memberSince={currentUser.memberSince} /></Page>} />
               <Route exact path="credits" 
                 element={
-                  <Credits key={credits} accountBalance={balance} userName={currentUser.userName} credits={credits} addTransaction={addTransaction}>
-                    <TransactionForm addTransaction={addTransaction} isCredit={true} />
-                  </Credits>
+                  <Page title="Credits">
+                    <Credits key={credits} accountBalance={balance} userName={currentUser.userName} credits={credits} addTransaction={addTransaction}>
+                        <TransactionForm addTransaction={addTransaction} isCredit={true} />
+                    </Credits>
+                  </Page>
                 } 
               />
               <Route path="debits" 
                 element={
+                  <Page title="Debits">
                   <Debits key={debits} accountBalance={balance} userName={currentUser.userName} debits={debits} addTransaction={addTransaction}>
                     <TransactionForm addTransaction={addTransaction} />
                   </Debits>
+                  </Page>
                 } 
               />
             </Route>
