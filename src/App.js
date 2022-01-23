@@ -60,7 +60,7 @@ export default function App() {
         <HashRouter>
           <Routes>
             <Route exact path="/" element={<Page title="Home"><Home userName={currentUser.userName} setCurrentUser={setCurrentUser} accountBalance={balance} /> </Page> } >
-              <Route exact path="login" element={<Page title="Log in"><Login setCurrentUser={setCurrentUser} /></Page>} />
+              <Route exact path="login" element={<Page title="Log In"><Login setCurrentUser={setCurrentUser} /></Page>} />
               <Route exact path="userProfile" element={<Page title="User Profile"><UserProfile userName={currentUser.userName} memberSince={currentUser.memberSince} /></Page>} />
               <Route exact path="credits" 
                 element={
