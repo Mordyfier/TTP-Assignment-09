@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Transaction from './Transaction';
+import { useNavigate } from 'react-router-dom';
 
 
     
-export default function Credits ({credits, children }) {
+export default function Credits ({credits, children, userName }) {
     const [sortAspect, setSortAspect] = useState("");
     const currentCredits = credits;
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!userName) {
+            navigate('/login', {state : {notLoggedIn : true}});
+        }
+    })
 
     if (sortAspect) { 
         currentCredits.sort((firstEl, secondEl) => {
@@ -21,6 +29,7 @@ export default function Credits ({credits, children }) {
 
     return (
         <div className='credits'>
+            <h1>Here are all your current credits:</h1>
             {credits && credits.map(x => <Transaction key={x.id} transaction={x} />)}
             {children}
             <button onClick={() => setSortAspect('description')}>Sort Alphabetically</button>

@@ -4,11 +4,14 @@ import Home from './components/Home';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
 import TransactionForm from './components/TransactionForm';
+import UserProfile from './components/UserProfile';
+import Login from './components/Login';
 
 export default function App() {
     const [balance, setBalance] = useState(0);
     const [credits, setCredits] = useState("");
     const [debits, setDebits] = useState("");
+    const [currentUser, setCurrentUser] = useState("");
 
     useEffect(() => {
       async function fetchData() {
@@ -55,17 +58,19 @@ export default function App() {
       <div className='app'>
         <HashRouter>
           <Routes>
-            <Route exact path="/" element={<Home accountBalance={balance} />} >
+            <Route exact path="/" element={<Home userName={currentUser.userName} setCurrentUser={setCurrentUser} accountBalance={balance} />} >
+              <Route exact path="login" element={<Login setCurrentUser={setCurrentUser} />} />
+              <Route exact path="userProfile" element={<UserProfile userName={currentUser.userName} memberSince={currentUser.memberSince} />} />
               <Route exact path="credits" 
                 element={
-                  <Credits key={credits} accountBalance={balance} credits={credits} addTransaction={addTransaction}>
+                  <Credits key={credits} accountBalance={balance} userName={currentUser.userName} credits={credits} addTransaction={addTransaction}>
                     <TransactionForm addTransaction={addTransaction} isCredit={true} />
                   </Credits>
                 } 
               />
               <Route path="debits" 
                 element={
-                  <Debits key={debits} accountBalance={balance} debits={debits} addTransaction={addTransaction}>
+                  <Debits key={debits} accountBalance={balance} userName={currentUser.userName} debits={debits} addTransaction={addTransaction}>
                     <TransactionForm addTransaction={addTransaction} />
                   </Debits>
                 } 
