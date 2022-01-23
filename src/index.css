@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 1px;
 }
 
 code {
@@ -26,14 +27,14 @@ code {
 }
 
 .nav-title {
-  margin-left: 30px;
+  margin: 10px 30px;
   margin-block: none;
   font-size: 40px;
   color: azure;
 }
 
 .nav-links {
-  margin-left: 30px;
+  margin-left: 40px;
 }
 
 .nav-link {
@@ -94,7 +95,7 @@ label, input {
 }
 
 .submit-button{
-  border: 0;
+  border: 1px solid forestgreen;
   background-color: forestgreen;
   color: white;
   padding: 5px;
@@ -102,6 +103,13 @@ label, input {
   padding-left: 10px;
   border-radius: 5px;
   font-size: 15px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: white;
+  color: forestgreen;
+  border: 1px solid forestgreen;
 }
 
 .credits, .debits {
@@ -118,4 +126,29 @@ button {
   color: forestgreen;
   font-size: 15px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: forestgreen;
+  color: white;
+}
+
+.login {
+  text-align: center;
+}
+
+.home {
+  text-align: center;
+  font-size: 25px;
+}
+
+.login-link {
+  color: forestgreen;
+  text-decoration: none;
+}
+
+.user-profile {
+  text-align: center;
+  font-size: 25px;
 }
